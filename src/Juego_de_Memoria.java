@@ -22,12 +22,20 @@ public class Juego_de_Memoria {
         boolean [] conciden = new boolean[6];
         int indice_usuario1 , indice_usuario2;
         int contador =0;
+        int contador_verificador = 0;
         
         GenerarTablero(arreglo);
         do{
         
         MostrarTablero(arreglo,conciden);
-        System.out.println("\nIngrese la primera posicion ");
+        System.out.println("\nIngrese la primera posicion:  ");
+        while(!sc.hasNext())
+        {
+            System.out.println("Error debe Ingresar un numero");
+            sc.nextLine();
+            System.out.println("Ingrese la primera posicion: ");
+            indice_usuario1 = sc.nextInt();
+        }
         indice_usuario1 = sc.nextInt();
         while(indice_usuario1< 0 || indice_usuario1 > 5)
         {
@@ -35,18 +43,34 @@ public class Juego_de_Memoria {
             indice_usuario1 = sc.nextInt();
         }
         
-        System.out.println("Ingrese la segunda posicion ");
+        System.out.println("Ingrese la segunda posicion: ");
+        indice_usuario2= sc.nextInt();
+         while(!sc.hasNext())
+        {
+            System.out.println("Error debe Ingresar un numero");
+            sc.nextLine();
+            System.out.println("Ingrese la segunda posicion: ");
+            indice_usuario2 = sc.nextInt();
+        }
         indice_usuario2= sc.nextInt();
         while(indice_usuario2 < 0 || indice_usuario2 > 5)
         {
-            System.out.println("Error el numero debe estar entre 0 y 5");
+            System.out.println("Error el numero debe estar entre 0 y 5: ");
+            System.out.println("Ingrese la segunda posicion: ");
             indice_usuario2 = sc.nextInt();
         }
         while(indice_usuario2  == indice_usuario1)
         {
             System.out.println("Error deben ser posiciones diferentes");
             System.out.println("Ingrese la segunda posicion: ");
+             while(!sc.hasNext())
+        {
+            System.out.println("Error debe Ingresar un numero");
+            sc.nextLine();
+            System.out.println("Ingrese la segunda posicion: ");
             indice_usuario2 = sc.nextInt();
+        }
+        indice_usuario2= sc.nextInt();
             while(indice_usuario2 < 0 || indice_usuario2 > 5)
         {
             System.out.println("Error el numero debe estar entre 0 y 5");
@@ -57,8 +81,17 @@ public class Juego_de_Memoria {
         }
          System.out.println("Los numeros son "  + arreglo[indice_usuario1] + " y " + arreglo[indice_usuario2]);
          Verificar(arreglo,conciden,indice_usuario1,indice_usuario2);
+         
+            if(arreglo[indice_usuario1] == arreglo[indice_usuario2])
+            {
+           
+                contador_verificador ++;
+            }
+         
         contador ++;
-        }while(true);
+        }while(contador_verificador != 3);
+        System.out.println("Felicidades has encontrado todos los pares en " + contador + " intentos");
+        MostrarTablero(arreglo,conciden);
     }
         
     public static int [] GenerarTablero(int [] arreglo_inicial)

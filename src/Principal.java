@@ -41,6 +41,7 @@ public class Principal {
                 
                 case '2':
                     System.out.println("Bingo Marematico");
+                    Loteria_a_Ciegas.ejecutar();
                     break;
                 
                 case '3':
